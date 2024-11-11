@@ -6,31 +6,31 @@
     <title>Презентация идеи для съемки контента и презентации личного бренда в сфере медицины</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            background-color: black; /* Черный фон */
-            color: white; /* Белый текст */
-        }
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-        }
-        .block {
-            display: flex;
-            align-items: center;
-            margin: 50px 0;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .block.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        background-color: black; /* Черный фон */
+        color: white; /* Белый текст */
+    }
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
+    }
+    .block {
+        display: flex;
+        align-items: center;
+        margin: 50px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .block.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
     .text {
         flex: 1;
         padding: 20px;
@@ -39,29 +39,30 @@
         font-size: 3em; /* Увеличенный размер заголовка h1 */
     }
     .text h2 {
-        font-size: 3.5em; /* Увеличенный размер заголовка */
+        font-size: 2.5em; /* Увеличенный размер заголовка h2 */
     }
     .text p {
         font-size: 1.2em; /* Увеличенный размер текста параграфа */
     }
+    .image {
+        flex: 1;
+        text-align: right;
+    }
+    .image img {
+        max-width: 100%;
+        height: auto;
+    }
+    @media (max-width: 768px) {
+        .block {
+            flex-direction: column;
+            text-align: center;
+        }
         .image {
-            flex: 1;
-            text-align: right;
+            text-align: center;
         }
-        .image img {
-            max-width: 100%;
-            height: auto;
-        }
-        @media (max-width: 768px) {
-            .block {
-                flex-direction: column;
-                text-align: center;
-            }
-            .image {
-                text-align: center;
-            }
-        }
-    </style>
+    }
+</style>
+
 </head>
 <body>
 
