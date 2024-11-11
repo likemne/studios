@@ -287,8 +287,11 @@
     function handleIntersect(entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Добавляем класс 'visible' к видимому блоку
-                entry.target.classList.add('visible');
+                // Проверяем, есть ли уже класс 'visible'
+                if (!entry.target.classList.contains('visible')) {
+                    // Добавляем класс 'visible' к видимому блоку
+                    entry.target.classList.add('visible');
+                }
                 // Удаляем наблюдатель для этого элемента, чтобы не вызывать его снова
                 observer.unobserve(entry.target);
             }
@@ -308,6 +311,7 @@
         observer.observe(block);
     });
 </script>
+
 
 
 
