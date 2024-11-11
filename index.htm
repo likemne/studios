@@ -128,4 +128,38 @@
         <div class="image">
             <img src="image8.jpg" alt="Изображение 8">
         </div>
-    </div
+    </div>
+
+    
+    
+    
+    
+    
+    
+<script>
+    // Функция для проверки видимости блока
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Функция для добавления класса 'visible' к видимым блокам
+    function checkVisibility() {
+        const blocks = document.querySelectorAll('.block');
+        blocks.forEach(block => {
+            if (isElementInViewport(block)) {
+                block.classList.add('visible');
+            }
+        });
+    }
+
+    // Проверка видимости при загрузке страницы
+    window.addEventListener('load', checkVisibility);
+    // Проверка видимости при прокрутке
+    window.addEventListener('scroll', checkVisibility);
+</script>
