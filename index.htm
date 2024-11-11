@@ -19,35 +19,15 @@
         max-width: 1200px;
         margin: auto;
     }
-   .block {
-    display: flex;
-    align-items: center;
-    margin: 50px 0;
-    opacity: 0;
-    transform: scale(0.5); /* Начальный масштаб */
-    transition: opacity 0.5s ease, transform 0.5s ease;
+  .block {
+    opacity: 0; /* Начальная непрозрачность */
+    transition: opacity 1s ease; /* Плавный переход */
 }
 
 .block.visible {
-    opacity: 1;
-    transform: scale(1); /* Увеличение до нормального размера */
-    animation: jelly 0.5s ease; /* Применение анимации желе */
+    opacity: 1; /* Конечная непрозрачность */
 }
 
-@keyframes jelly {
-    0% {
-        transform: scale(1);
-    }
-    30% {
-        transform: scale(1.1); /* Увеличение на 10% */
-    }
-    50% {
-        transform: scale(0.9); /* Уменьшение на 10% */
-    }
-    100% {
-        transform: scale(1); /* Возврат к нормальному размеру */
-    }
-}
 
     .text {
         flex: 1;
@@ -287,11 +267,8 @@
     function handleIntersect(entries, observer) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Проверяем, есть ли уже класс 'visible'
-                if (!entry.target.classList.contains('visible')) {
-                    // Добавляем класс 'visible' к видимому блоку
-                    entry.target.classList.add('visible');
-                }
+                // Добавляем класс 'visible' к видимому блоку
+                entry.target.classList.add('visible');
                 // Удаляем наблюдатель для этого элемента, чтобы не вызывать его снова
                 observer.unobserve(entry.target);
             }
@@ -311,7 +288,6 @@
         observer.observe(block);
     });
 </script>
-
 
 
 
