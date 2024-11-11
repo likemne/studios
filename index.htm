@@ -283,35 +283,32 @@
 </div>
 
 <script>
-    // Функция для проверки видимости блока
-    function isElementInViewport(el) {
-        const rect = el.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
-    }
-
-    // Функция для добавления класса 'visible' к видимым блокам
-    function checkVisibility() {
-        const blocks = document.querySelectorAll('.block');
-        blocks.forEach((block, index) => {
-            if (isElementInViewport(block)) {
-                // Добавляем задержку для каждого блока
-                setTimeout(() => {
-                    block.classList.add('visible');
-                }, index * 100); // Задержка в 300 мс между блоками
+    // Функция для обработки видимости блоков
+    function handleIntersect(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Добавляем класс 'visible' к видимому блоку
+                entry.target.classList.add('visible');
+                // Удаляем наблюдатель для этого элемента, чтобы не вызывать его снова
+                observer.unobserve(entry.target);
             }
         });
     }
 
-    // Проверка видимости при загрузке страницы
-    window.addEventListener('load', checkVisibility);
-    // Проверка видимости при прокрутке
-    window.addEventListener('scroll', checkVisibility);
+    // Создаем экземпляр Intersection Observer
+    const observer = new IntersectionObserver(handleIntersect, {
+        root: null, // Используем viewport как корень
+        rootMargin: '0px', // Отступы
+        threshold: 0.1 // Срабатывает, когда 10% элемента видимо
+    });
+
+    // Находим все блоки и начинаем наблюдение за ними
+    const blocks = document.querySelectorAll('.block');
+    blocks.forEach(block => {
+        observer.observe(block);
+    });
 </script>
+
 
 
 </body>
