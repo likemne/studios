@@ -3,108 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Презентация</title>
+    <title>Адаптивный Лендинг</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background-color: black; /* Черный фон */
-            color: white; /* Белый текст */
-            font-family: Arial, sans-serif; /* Шрифт */
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            overflow-x: hidden;
         }
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 1200px;
             margin: auto;
-            text-align: center;
         }
-        .slide {
-            display: none; /* Скрыть все слайды по умолчанию */
-            padding: 50px;
+        .block {
+            display: flex;
+            align-items: center;
+            margin: 50px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
-        .active {
-            display: block; /* Показать активный слайд */
+        .block.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .navigation {
-            margin-top: 20px;
+        .text {
+            flex: 1;
+            padding: 20px;
         }
-        button {
-            padding: 10px 20px;
-            background-color: white; /* Кнопка белого цвета */
-            color: black; /* Текст кнопки черного цвета */
-            border: none;
-            cursor: pointer;
+        .image {
+            flex: 1;
+            text-align: right;
+        }
+        .image img {
+            max-width: 100%;
+            height: auto;
+        }
+        @media (max-width: 768px) {
+            .block {
+                flex-direction: column;
+                text-align: center;
+            }
+            .image {
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Презентация</h1>
-
-    <!-- Слайды презентации -->
-    <div class="slide active">
-        <h2>Часть 1</h2>
-        <p>Описание первой части презентации.</p>
+    <div class="block" id="block1">
+        <div class="text">
+            <h2>Заголовок 1</h2>
+            <p>Описание блока 1.</p>
+        </div>
+        <div class="image">
+            <img src="image1.jpg" alt="Изображение 1">
+        </div>
     </div>
-    <div class="slide">
-        <h2>Часть 2</h2>
-        <p>Описание второй части презентации.</p>
+    <div class="block" id="block2">
+        <div class="text">
+            <h2>Заголовок 2</h2>
+            <p>Описание блока 2.</p>
+        </div>
+        <div class="image">
+            <img src="image2.jpg" alt="Изображение 2">
+        </div>
     </div>
-    <div class="slide">
-        <h2>Часть 3</h2>
-        <p>Описание третьей части презентации.</p>
+    <div class="block" id="block3">
+        <div class="text">
+            <h2>Заголовок 3</h2>
+            <p>Описание блока 3.</p>
+        </div>
+        <div class="image">
+            <img src="image3.jpg" alt="Изображение 3">
+        </div>
     </div>
-    <div class="slide">
-        <h2>Часть 4</h2>
-        <p>Описание четвертой части презентации.</p>
+    <div class="block" id="block4">
+        <div class="text">
+            <h2>Заголовок 4</h2>
+            <p>Описание блока 4.</p>
+        </div>
+        <div class="image">
+            <img src="image4.jpg" alt="Изображение 4">
+        </div>
     </div>
-    <div class="slide">
-        <h2>Часть 5</h2>
-        <p>Описание пятой части презентации.</p>
+    <div class="block" id="block5">
+        <div class="text">
+            <h2>Заголовок 5</h2>
+            <p>Описание блока 5.</p>
+        </div>
+        <div class="image">
+            <img src="image5.jpg" alt="Изображение 5">
+        </div>
     </div>
-    <div class="slide">
-        <h2>Часть 6</h2>
-        <p>Описание шестой части презентации.</p>
+    <div class="block" id="block6">
+        <div class="text">
+            <h2>Заголовок 6</h2>
+            <p>Описание блока 6.</p>
+        </div>
+        <div class="image">
+            <img src="image6.jpg" alt="Изображение 6">
+        </div>
     </div>
-    <div class="slide">
-        <h2>Часть 7</h2>
-        <p>Описание седьмой части презентации.</p>
+    <div class="block" id="block7">
+        <div class="text">
+            <h2>Заголовок 7</h2>
+            <p>Описание блока 7.</p>
+        </div>
+        <div class="image">
+            <img src="image7.jpg" alt="Изображение 7">
+        </div>
     </div>
-    <div class="slide">
-        <h2>Часть 8</h2>
-        <p>Описание восьмой части презентации.</p>
-    </div>
-
-    <!-- Навигация -->
-    <div class="navigation">
-        <button onclick="prevSlide()">Назад</button>
-        <button onclick="nextSlide()">Вперед</button>
-    </div>
-</div>
-
-<script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll('.slide');
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            if (i === index) {
-                slide.classList.add('active');
-            }
-        });
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length; // Переход к следующему слайду
-        showSlide(currentSlide);
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length; // Переход к предыдущему слайду
-        showSlide(currentSlide);
-    }
-</script>
-
-</body>
-</html>
+    <div class="block" id="block8">
+        <div class="text">
+            <h2>Заголовок 8</h2>
+            <p>Описание блока 8.</p>
+        </div>
+        <div class="image">
+            <img src="image8.jpg" alt="Изображение 8">
+        </div>
+    </div
