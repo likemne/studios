@@ -20,17 +20,18 @@
         margin: auto;
     }
     .block {
-        display: flex;
-        align-items: center;
-        margin: 50px 0;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .block.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    display: flex;
+    align-items: center;
+    margin: 50px 0;
+    opacity: 0;
+    transform: scale(0.8); /* Начальный масштаб */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.block.visible {
+    opacity: 1;
+    transform: scale(1); /* Увеличение до нормального размера */
+}
     .text {
         flex: 1;
         padding: 20px;
@@ -284,9 +285,12 @@
     // Функция для добавления класса 'visible' к видимым блокам
     function checkVisibility() {
         const blocks = document.querySelectorAll('.block');
-        blocks.forEach(block => {
+        blocks.forEach((block, index) => {
             if (isElementInViewport(block)) {
-                block.classList.add('visible');
+                // Добавляем задержку для каждого блока
+                setTimeout(() => {
+                    block.classList.add('visible');
+                }, index * 300); // Задержка в 300 мс между блоками
             }
         });
     }
