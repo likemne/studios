@@ -19,19 +19,36 @@
         max-width: 1200px;
         margin: auto;
     }
-    .block {
+   .block {
     display: flex;
     align-items: center;
     margin: 50px 0;
     opacity: 0;
-    transform: scale(0.8); /* Начальный масштаб */
+    transform: scale(0.5); /* Начальный масштаб */
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .block.visible {
     opacity: 1;
     transform: scale(1); /* Увеличение до нормального размера */
+    animation: jelly 0.5s ease; /* Применение анимации желе */
 }
+
+@keyframes jelly {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.1); /* Увеличение на 10% */
+    }
+    50% {
+        transform: scale(0.9); /* Уменьшение на 10% */
+    }
+    100% {
+        transform: scale(1); /* Возврат к нормальному размеру */
+    }
+}
+
     .text {
         flex: 1;
         padding: 20px;
@@ -300,6 +317,7 @@
     // Проверка видимости при прокрутке
     window.addEventListener('scroll', checkVisibility);
 </script>
+
 
 </body>
 </html>
